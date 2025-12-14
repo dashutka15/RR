@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - Radiant Reflections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+         <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo-container">
+                        <div class="logo">RR</div>
+                        <div class="logo-text">
+                            <div class="logo-main">Radiant Reflections</div>
+                            <div class="logo-sub">Профессиональный визажист</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Гамбургер меню -->
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="portfolio.html" class="active">Портфолио</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="booking.html">Запись</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Портфолио</h1>
+            <p>Реализованные работы и вдохновляющие образы</p>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <div class="container">
+            <div class="portfolio-filters">
+                <a href="#" class="filter-btn active" data-filter="all">Все работы</a>
+                <a href="#" class="filter-btn" data-filter="wedding">Свадьбы</a>
+                <a href="#" class="filter-btn" data-filter="evening">Вечерние</a>
+                <a href="#" class="filter-btn" data-filter="natural">Естественные</a>
+                <a href="#" class="filter-btn" data-filter="creative">Креативные</a>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- ОСНОВНЫЕ ФОТОГРАФИИ (видны всегда) -->
+                
+                <!-- Свадебные работы -->
+                <div class="portfolio-item wedding">
+                    <img src="https://i.pinimg.com/736x/da/85/52/da85527e92916832c1d0d2e8352b5a8b.jpg" alt="Свадебный макияж">
+                    <div class="portfolio-overlay">
+                        <h3>Свадебный образ</h3>
+                        <p>Нежный макияж для самого важного дня</p>
+                    </div>
+                </div>
+                
+                <!-- Вечерние работы -->
+                <div class="portfolio-item evening">
+                    <img src="https://i.pinimg.com/originals/6d/49/ac/6d49ac601bb843bfb48000986210b689.jpg" alt="Вечерний макияж">
+                    <div class="portfolio-overlay">
+                        <h3>Вечерний образ</h3>
+                        <p>Для особых мероприятий</p>
+                    </div>
+                </div>
+                
+                <!-- Естественные работы -->
+                <div class="portfolio-item natural">
+                    <img src="https://i.pinimg.com/736x/11/c3/aa/11c3aacc833d7448dc82c20cf451292b.jpg" alt="Естественный макияж">
+                    <div class="portfolio-overlay">
+                        <h3>Естественная красота</h3>
+                        <p>Подчеркиваем природные черты</p>
+                    </div>
+                </div>
+                
+                <!-- Креативные работы -->
+                <div class="portfolio-item creative">
+                    <img src="https://i.pinimg.com/originals/6d/ca/42/6dca4287a84ba22344a23c01cf7bff7e.jpg" alt="Креативный макияж">
+                    <div class="portfolio-overlay">
+                        <h3>Креативный макияж</h3>
+                        <p>Смелые эксперименты с цветом</p>
+                    </div>
+                </div>
+                
+                <!-- Свадебные работы -->
+                <div class="portfolio-item wedding">
+                    <img src="https://i.pinimg.com/736x/a3/08/c5/a308c58a67da0120bc08c4beefbeac2f.jpg" alt="Свадебный макияж 2">
+                    <div class="portfolio-overlay">
+                        <h3>Романтичный образ</h3>
+                        <p>Идеально для фотосессии</p>
+                    </div>
+                </div>
+                
+                <!-- Вечерние работы -->
+                <div class="portfolio-item evening">
+                    <img src="https://i.pinimg.com/originals/bb/0c/62/bb0c624e760770561b1055f01e3b2c86.jpg" alt="Вечерний макияж 2">
+                    <div class="portfolio-overlay">
+                        <h3>Гламурный вечер</h3>
+                        <p>Блеск и элегантность</p>
+                    </div>
+                </div>
+                
+                <!-- ДОПОЛНИТЕЛЬНЫЕ ФОТОГРАФИИ (скрытые по умолчанию) -->
+                
+                <!-- Дополнительные свадебные работы -->
+                <div class="portfolio-item wedding hidden-photo">
+                    <img src="https://i.pinimg.com/736x/10/86/70/108670e069c09b2c77b05d3af08c1f2b.jpg" alt="Свадебный макияж 3">
+                    <div class="portfolio-overlay">
+                        <h3>Классическая невеста</h3>
+                        <p>Вечная классика в белом</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item wedding hidden-photo">
+                    <img src="https://i.pinimg.com/originals/31/bf/cb/31bfcb44369b72927a33232eb91045d4.jpg" alt="Свадебный макияж 4">
+                    <div class="portfolio-overlay">
+                        <h3>Современная невеста</h3>
+                        <p>Современный подход к свадебному образу</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item wedding hidden-photo">
+                    <img src="https://i.pinimg.com/736x/5f/ad/72/5fad720b98c7187fffb4c4ed61caf460.jpg" alt="Свадебный макияж 5">
+                    <div class="portfolio-overlay">
+                        <h3>Летняя свадьба</h3>
+                        <p>Свежий образ для летней церемонии</p>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные вечерние работы -->
+                <div class="portfolio-item evening hidden-photo">
+                    <img src="https://i.pinimg.com/736x/d5/87/33/d5873345e578d288757e4df0e0dd05de.jpg" alt="Вечерний макияж 3">
+                    <div class="portfolio-overlay">
+                        <h3>Красная дорожка</h3>
+                        <p>Образ для торжественных мероприятий</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item evening hidden-photo">
+                    <img src="https://i.pinimg.com/736x/29/b7/92/29b792ca5fcdf456162e3458a79d067e.jpg" alt="Вечерний макияж 4">
+                    <div class="portfolio-overlay">
+                        <h3>Новогодний вечер</h3>
+                        <p>Блестящий образ для праздника</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item evening hidden-photo">
+                    <img src="https://i.pinimg.com/736x/5e/35/4c/5e354c45ce94b4a21164cf0a60fa9722.jpg" alt="Вечерний макияж 5">
+                    <div class="portfolio-overlay">
+                        <h3>Деловой ужин</h3>
+                        <p>Элегантный образ для деловых встреч</p>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные естественные работы -->
+                <div class="portfolio-item natural hidden-photo">
+                    <img src="https://i.pinimg.com/originals/b8/7e/69/b87e69ba34580622b06d016af5c8a934.jpg" alt="Естественный макияж 3">
+                    <div class="portfolio-overlay">
+                        <h3>Дневной образ</h3>
+                        <p>Идеально для повседневной носки</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item natural hidden-photo">
+                    <img src="https://i.pinimg.com/originals/48/74/57/48745713298d9ce1be7b3b9d4af59b29.jpg" alt="Естественный макияж 4">
+                    <div class="portfolio-overlay">
+                        <h3>Свежий взгляд</h3>
+                        <p>Минималистичный подход к красоте</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item natural hidden-photo">
+                    <img src="https://i.pinimg.com/736x/6b/b3/e5/6bb3e5b2daf8cd63c794d23630bbe030.jpg" alt="Естественный макияж 5">
+                    <div class="portfolio-overlay">
+                        <h3>Природное сияние</h3>
+                        <p>Подчеркиваем здоровое сияние кожи</p>
+                    </div>
+                </div>
+                
+                <!-- Дополнительные креативные работы -->
+                <div class="portfolio-item creative hidden-photo">
+                    <img src="https://i.pinimg.com/originals/e7/87/99/e78799cb833ef01fd590a5a638f0a621.jpg" alt="Креативный макияж 3">
+                    <div class="portfolio-overlay">
+                        <h3>Графический макияж</h3>
+                        <p>Четкие линии и геометрические формы</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item creative hidden-photo">
+                    <img src="https://i.pinimg.com/736x/46/f9/40/46f940dd80cbc026b8b6f4bd8380c025.jpg" alt="Креативный макияж 4">
+                    <div class="portfolio-overlay">
+                        <h3>Фантазийный образ</h3>
+                        <p>Вдохновение из мира фантазии</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item creative hidden-photo">
+                    <img src="https://i.pinimg.com/736x/a1/21/6e/a1216e8875d0a499ac3c9370694f5f32.jpg" alt="Креативный макияж 5">
+                    <div class="portfolio-overlay">
+                        <h3>Художественный макияж</h3>
+                        <p>Макияж как произведение искусства</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кнопка "Показать еще" -->
+            <button class="show-more-btn">Показать еще работы</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <!-- Логотип в футере как на главной -->
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <div class="logo-container" style="gap: 0.8rem;">
+                            <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
+                            <div class="logo-text">
+                                <div class="logo-main" style="color: white; font-size: 1.3rem;">Radiant Reflections</div>
+                                <div class="logo-sub" style="color: rgba(255,255,255,0.7);">Ваш профессиональный визажист</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Radiant Reflections. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем элементы
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            let currentFilter = 'all';
+            let showingAll = false;
+            
+            // Инициализация - показываем основные фото
+            portfolioItems.forEach(item => {
+                const isHiddenPhoto = item.classList.contains('hidden-photo');
+                if (!isHiddenPhoto) {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Функция фильтрации
+            function filterPortfolio(filter) {
+                currentFilter = filter;
+                showingAll = false;
+                
+                // Обновляем активную кнопку
+                filterButtons.forEach(btn => {
+                    if (btn.dataset.filter === filter) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Сначала скрываем все элементы с анимацией
+                portfolioItems.forEach(item => {
+                    if (item.style.display !== 'none') {
+                        item.classList.add('fade-out');
+                    }
+                });
+                
+                // После анимации скрытия показываем нужные элементы
+                setTimeout(() => {
+                    portfolioItems.forEach(item => {
+                        item.classList.remove('fade-out');
+                        const isHiddenPhoto = item.classList.contains('hidden-photo');
+                        
+                        if (filter === 'all') {
+                            // Показываем только основные фото
+                            if (!isHiddenPhoto) {
+                                item.style.display = 'block';
+                                item.style.opacity = '1';
+                            } else {
+                                item.style.display = 'none';
+                                item.classList.remove('show');
+                            }
+                        } else if (item.classList.contains(filter)) {
+                            // Показываем основные фото категории
+                            if (!isHiddenPhoto) {
+                                item.style.display = 'block';
+                                item.style.opacity = '1';
+                            } else {
+                                item.style.display = 'none';
+                                item.classList.remove('show');
+                            }
+                        } else {
+                            // Скрываем все остальные
+                            item.style.display = 'none';
+                        }
+                    });
+                }, 300);
+                
+                // Показываем кнопку "Показать еще" если выбран конкретный фильтр
+                if (filter !== 'all') {
+                    showMoreBtn.style.display = 'block';
+                    showMoreBtn.textContent = 'Показать больше фото из этой категории';
+                } else {
+                    showMoreBtn.style.display = 'none';
+                }
+            }
+            
+            // Функция показа дополнительных фотографий
+            function showMorePhotos() {
+                showingAll = !showingAll;
+                
+                if (showingAll) {
+                    // Показываем все фото текущей категории
+                    portfolioItems.forEach(item => {
+                        const isHiddenPhoto = item.classList.contains('hidden-photo');
+                        
+                        if (currentFilter === 'all') {
+                            if (isHiddenPhoto) {
+                                item.style.display = 'block';
+                                setTimeout(() => {
+                                    item.classList.add('show');
+                                }, 10);
+                            }
+                        } else if (item.classList.contains(currentFilter) && isHiddenPhoto) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.classList.add('show');
+                            }, 10);
+                        }
+                    });
+                    
+                    showMoreBtn.textContent = 'Скрыть дополнительные фото';
+                } else {
+                    // Скрываем дополнительные фото с анимацией
+                    const hiddenPhotosToHide = document.querySelectorAll('.portfolio-item.hidden-photo.show');
+                    hiddenPhotosToHide.forEach(photo => {
+                        photo.classList.remove('show');
+                    });
+                    
+                    // После анимации скрытия
+                    setTimeout(() => {
+                        portfolioItems.forEach(item => {
+                            const isHiddenPhoto = item.classList.contains('hidden-photo');
+                            if (isHiddenPhoto) {
+                                item.style.display = 'none';
+                            }
+                        });
+                    }, 500);
+                    
+                    showMoreBtn.textContent = 'Показать больше фото из этой категории';
+                }
+            }
+            
+            // Обработчики кликов на кнопки фильтров
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const filter = this.dataset.filter;
+                    filterPortfolio(filter);
+                });
+            });
+            
+            // Обработчик кнопки "Показать еще"
+            showMoreBtn.addEventListener('click', showMorePhotos);
+            
+            // Обработка ошибок загрузки изображений
+            document.querySelectorAll('.portfolio-item img').forEach(img => {
+                img.addEventListener('error', function() {
+                    // Заменяем битое изображение на заглушку
+                    this.src = 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
+                    this.alt = 'Изображение временно недоступно';
+                });
+            });
+            
+            // Анимация появления элементов при загрузке
+            portfolioItems.forEach((item, index) => {
+                if (!item.classList.contains('hidden-photo')) {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 100 * index + 100);
+                }
+            });
+            
+            // Инициализация - скрываем кнопку "Показать еще" на старте
+            showMoreBtn.style.display = 'none';
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
