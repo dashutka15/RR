@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись - Radiant Reflections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo-container">
+                        <div class="logo">RR</div>
+                        <div class="logo-text">
+                            <div class="logo-main">Radiant Reflections</div>
+                            <div class="logo-sub">Профессиональный визажист</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Гамбургер меню -->
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="portfolio.html">Портфолио</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="booking.html" class="active">Запись</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Онлайн запись</h1>
+            <p>Выберите удобное время для визита</p>
+        </div>
+    </section>
+
+    <section class="booking">
+        <div class="container">
+            <form class="booking-form" action="thank-you.html" method="get">
+                <input type="hidden" name="form_type" value="booking">
+                
+                <h2>Выберите услугу</h2>
+                <div class="service-options">
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Свадебный макияж" required>
+                        <div class="option-content">
+                            <h3>Свадебный макияж</h3>
+                            <p>от 8 000 ₽</p>
+                            <span>Идеальный образ для самого важного дня</span>
+                        </div>
+                    </label>
+
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Вечерний макияж">
+                        <div class="option-content">
+                            <h3>Вечерний макияж</h3>
+                            <p>от 5 500 ₽</p>
+                            <span>Для мероприятий и особых случаев</span>
+                        </div>
+                    </label>
+
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Обучение макияжу">
+                        <div class="option-content">
+                            <h3>Обучение макияжу</h3>
+                            <p>от 20 000 ₽</p>
+                            <span>Индивидуальные уроки макияжа</span>
+                        </div>
+                    </label>
+
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Express-макияж">
+                        <div class="option-content">
+                            <h3>Express-макияж</h3>
+                            <p>от 4 000 ₽</p>
+                            <span>Быстрый макияж для повседневности</span>
+                        </div>
+                    </label>
+
+                    <!-- Свадебный пакет премиум -->
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Свадебный пакет премиум">
+                        <div class="option-content">
+                            <h3>Свадебный пакет премиум</h3>
+                            <p>16 500 ₽</p>
+                            <span>Макияж + прическа + консультация + пробная сессия</span>
+                        </div>
+                    </label>
+
+                    <!-- Курс "Мастер макияжа" -->
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Курс 'Мастер макияжа'">
+                        <div class="option-content">
+                            <h3>Курс "Мастер макияжа"</h3>
+                            <p>19 900 ₽</p>
+                            <span>Полный курс профессионального макияжа (5 занятий)</span>
+                        </div>
+                    </label>
+
+                    <!-- Осеннее преображение -->
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Осеннее преображение">
+                        <div class="option-content">
+                            <h3>Осеннее преображение</h3>
+                            <p>5 900 ₽</p>
+                            <span>Сезонный макияж в теплых осенних тонах + уход</span>
+                        </div>
+                    </label>
+
+                    <!-- Приведи подругу -->
+                    <label class="service-option">
+                        <input type="radio" name="service" value="Приведи подругу">
+                        <div class="option-content">
+                            <h3>Приведи подругу</h3>
+                            <p>от 4 000 ₽</p>
+                            <span>Скидка 25% для каждой при записи вдвоем</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Дата и время (скрыто изначально) -->
+                <div id="dateTimeSection" class="hidden-section">
+                    <div class="form-group">
+                        <label>Дата:</label>
+                        <input type="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Время:</label>
+                        <select name="time" required>
+                            <option value="">Выберите время</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Контактные данные (скрыто изначально) -->
+                <div id="contactSection" class="hidden-section">
+                    <h2>Контактные данные</h2>
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Телефон" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Дополнительные пожелания..." rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Записаться</button>
+                </div>
+            </form>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--light); border-radius: 10px;">
+                <h3>Альтернативные способы записи</h3>
+                <p>Если форма не работает, свяжитесь со мной напрямую:</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                    <a href="tel:+79803429804" class="btn-primary">+7 (980) 342-98-04</a>
+                    <a href="https://wa.me/79991234567" class="btn-secondary" target="_blank">WhatsApp</a>
+                    <a href="https://t.me/ваш_телеграм" class="btn-secondary" target="_blank">Telegram</a>
+                    <a href="https://mail.ru/" class="btn-secondary" target="_blank">Почта</a>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <!-- Логотип в футере как на главной -->
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <div class="logo-container" style="gap: 0.8rem;">
+                            <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
+                            <div class="logo-text">
+                                <div class="logo-main" style="color: white; font-size: 1.3rem;">Radiant Reflections</div>
+                                <div class="logo-sub" style="color: rgba(255,255,255,0.7);">Ваш профессиональный визажист</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Radiant Reflections. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Функция для авто-выбора услуги из URL параметра
+        function autoSelectServiceFromURL() {
+            // Получаем параметр 'service' из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceFromURL = urlParams.get('service');
+            
+            if (serviceFromURL) {
+                // Декодируем специальные символы
+                const decodedService = decodeURIComponent(serviceFromURL);
+                console.log('Ищем услугу:', decodedService);
+                
+                // Ищем radio-кнопку с соответствующим значением
+                const serviceRadios = document.querySelectorAll('.service-option input[type="radio"]');
+                let found = false;
+                
+                serviceRadios.forEach(radio => {
+                    console.log('Проверяем radio со значением:', radio.value);
+                    if (radio.value === decodedService) {
+                        // Программно выбираем услугу
+                        radio.checked = true;
+                        found = true;
+                        console.log('Найдена и выбрана услуга:', decodedService);
+                        
+                        // Имитируем событие change для отображения следующих секций
+                        const event = new Event('change');
+                        radio.dispatchEvent(event);
+                        
+                        // Добавляем визуальный акцент на выбранную услугу
+                        setTimeout(() => {
+                            const serviceCard = radio.closest('.service-option');
+                            serviceCard.style.borderColor = 'var(--secondary)';
+                            serviceCard.style.boxShadow = '0 0 0 3px rgba(139, 115, 85, 0.2)';
+                            serviceCard.style.transition = 'all 0.3s ease';
+                            
+                            // Прокручиваем к выбранной услуге
+                            serviceCard.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                            
+                            // Через 3 секунды убираем акцент
+                            setTimeout(() => {
+                                serviceCard.style.boxShadow = '';
+                            }, 3000);
+                        }, 300);
+                    }
+                });
+                
+                if (!found) {
+                    console.log('Услуга не найдена:', decodedService);
+                    console.log('Доступные значения:', Array.from(serviceRadios).map(r => r.value));
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем элементы
+            const serviceOptions = document.querySelectorAll('.service-option input[type="radio"]');
+            const dateTimeSection = document.getElementById('dateTimeSection');
+            const contactSection = document.getElementById('contactSection');
+            
+            // Обработчик выбора услуги
+            serviceOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Показываем дату и время с анимацией
+                        setTimeout(() => {
+                            dateTimeSection.classList.add('show');
+                            // Прокручиваем к дате и времени
+                            dateTimeSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Обработчик выбора даты и времени
+            const dateInput = document.querySelector('input[name="date"]');
+            const timeSelect = document.querySelector('select[name="time"]');
+            
+            function checkDateTime() {
+                if (dateInput.value && timeSelect.value) {
+                    // Показываем контактные данные с анимацией
+                    setTimeout(() => {
+                        contactSection.classList.add('show');
+                        // Прокручиваем к контактным данным
+                        contactSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }, 300);
+                } else {
+                    contactSection.classList.remove('show');
+                }
+            }
+            
+            dateInput.addEventListener('change', checkDateTime);
+            timeSelect.addEventListener('change', checkDateTime);
+            
+            // Устанавливаем минимальную дату (завтра)
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+            dateInput.min = tomorrowFormatted;
+            
+            // Устанавливаем максимальную дату (через 3 месяца)
+            const maxDate = new Date();
+            maxDate.setMonth(maxDate.getMonth() + 3);
+            const maxDateFormatted = maxDate.toISOString().split('T')[0];
+            dateInput.max = maxDateFormatted;
+            
+            // Заполняем дату значением по умолчанию (через 2 дня)
+            const defaultDate = new Date();
+            defaultDate.setDate(defaultDate.getDate() + 2);
+            const defaultDateFormatted = defaultDate.toISOString().split('T')[0];
+            dateInput.value = defaultDateFormatted;
+            
+            // Автоматически выбираем услугу из URL
+            autoSelectServiceFromURL();
+            
+            // Если услуга уже выбрана (при возврате назад в браузере)
+            const selectedService = document.querySelector('.service-option input[type="radio"]:checked');
+            if (selectedService) {
+                dateTimeSection.classList.add('show');
+                // Проверяем, если дата и время уже заполнены
+                setTimeout(checkDateTime, 100);
+            }
+            
+            // Обработчик отправки формы
+            const form = document.querySelector('.booking-form');
+            form.addEventListener('submit', function(e) {
+                // Проверяем все обязательные поля
+                const requiredFields = this.querySelectorAll('[required]');
+                let allValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        allValid = false;
+                        field.style.borderColor = 'red';
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+                
+                if (!allValid) {
+                    e.preventDefault();
+                    alert('Пожалуйста, заполните все обязательные поля');
+                }
+            });
+        });
+        
+        // Функция для открытия почтового клиента
+        function openMailClient() {
+            const subject = 'Запись на макияж';
+            const body = 'Здравствуйте! Я хочу записаться на макияж. Пожалуйста, свяжитесь со мной для уточнения деталей.';
+            window.location.href = `mailto:dasha-chernyshka@yandex.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>
