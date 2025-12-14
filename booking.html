@@ -5,6 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Запись - Radiant Reflections</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для скрытых секций */
+        .hidden-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .hidden-section.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-option {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .service-option:hover {
+            border-color: #f0f0f0;
+        }
+        
+        .service-option input[type="radio"]:checked + .option-content {
+            background-color: #f9f5f0;
+        }
+        
+        /* Анимация кнопки отправки */
+        .btn-submit {
+            background: linear-gradient(135deg, #8b7355 0%, #a89276 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            display: inline-block;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+        
+        /* Стили для успешной отправки */
+        .success-message {
+            display: none;
+            background: #f0f9f0;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -48,7 +124,19 @@
 
     <section class="booking">
         <div class="container">
-            <form class="booking-form" action="thank-you.html" method="get">
+            <!-- Сообщение об успешной отправке (изначально скрыто) -->
+            <div id="successMessage" class="success-message">
+                <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 1rem;">✓</div>
+                <h2 style="color: #2E7D32;">Заявка отправлена!</h2>
+                <p>Спасибо за вашу заявку. Я свяжусь с вами в ближайшее время для подтверждения записи.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="index.html" class="btn-primary" style="margin-right: 1rem;">На главную</a>
+                    <a href="booking.html" class="btn-secondary">Новая запись</a>
+                </div>
+            </div>
+
+            <!-- Форма записи -->
+            <form id="bookingForm" class="booking-form">
                 <input type="hidden" name="form_type" value="booking">
                 
                 <h2>Выберите услугу</h2>
@@ -132,14 +220,15 @@
 
                 <!-- Дата и время (скрыто изначально) -->
                 <div id="dateTimeSection" class="hidden-section">
+                    <h2>Выберите дату и время</h2>
                     <div class="form-group">
                         <label>Дата:</label>
-                        <input type="date" name="date" required>
+                        <input type="date" id="dateInput" name="date" required>
                     </div>
                     
                     <div class="form-group">
                         <label>Время:</label>
-                        <select name="time" required>
+                        <select id="timeSelect" name="time" required>
                             <option value="">Выберите время</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -156,24 +245,24 @@
 
                 <!-- Контактные данные (скрыто изначально) -->
                 <div id="contactSection" class="hidden-section">
-                    <h2>Контактные данные</h2>
+                    <h2>Ваши контактные данные</h2>
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="text" id="nameInput" name="name" placeholder="Ваше имя" required>
                     </div>
                     
                     <div class="form-group">
-                        <input type="tel" name="phone" placeholder="Телефон" required>
+                        <input type="tel" id="phoneInput" name="phone" placeholder="Телефон" required>
                     </div>
                     
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email" required>
+                        <input type="email" id="emailInput" name="email" placeholder="Email" required>
                     </div>
                     
                     <div class="form-group">
-                        <textarea name="message" placeholder="Дополнительные пожелания..." rows="3"></textarea>
+                        <textarea id="messageInput" name="message" placeholder="Дополнительные пожелания..." rows="3"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary">Записаться</button>
+                    <button type="submit" class="btn-submit">Подтвердить запись</button>
                 </div>
             </form>
 
@@ -184,7 +273,7 @@
                     <a href="tel:+79803429804" class="btn-primary">+7 (980) 342-98-04</a>
                     <a href="https://wa.me/79991234567" class="btn-secondary" target="_blank">WhatsApp</a>
                     <a href="https://t.me/ваш_телеграм" class="btn-secondary" target="_blank">Telegram</a>
-                    <a href="https://mail.ru/" class="btn-secondary" target="_blank">Почта</a>
+                    <a href="mailto:dasha-chernyshka@yandex.ru?subject=Запись на макияж" class="btn-secondary">Почта</a>
                 </div>
             </div>
         </div>
@@ -217,75 +306,33 @@
 
     <script src="script.js"></script>
     <script>
-        // Функция для авто-выбора услуги из URL параметра
-        function autoSelectServiceFromURL() {
-            // Получаем параметр 'service' из URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const serviceFromURL = urlParams.get('service');
-            
-            if (serviceFromURL) {
-                // Декодируем специальные символы
-                const decodedService = decodeURIComponent(serviceFromURL);
-                console.log('Ищем услугу:', decodedService);
-                
-                // Ищем radio-кнопку с соответствующим значением
-                const serviceRadios = document.querySelectorAll('.service-option input[type="radio"]');
-                let found = false;
-                
-                serviceRadios.forEach(radio => {
-                    console.log('Проверяем radio со значением:', radio.value);
-                    if (radio.value === decodedService) {
-                        // Программно выбираем услугу
-                        radio.checked = true;
-                        found = true;
-                        console.log('Найдена и выбрана услуга:', decodedService);
-                        
-                        // Имитируем событие change для отображения следующих секций
-                        const event = new Event('change');
-                        radio.dispatchEvent(event);
-                        
-                        // Добавляем визуальный акцент на выбранную услугу
-                        setTimeout(() => {
-                            const serviceCard = radio.closest('.service-option');
-                            serviceCard.style.borderColor = 'var(--secondary)';
-                            serviceCard.style.boxShadow = '0 0 0 3px rgba(139, 115, 85, 0.2)';
-                            serviceCard.style.transition = 'all 0.3s ease';
-                            
-                            // Прокручиваем к выбранной услуге
-                            serviceCard.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'center'
-                            });
-                            
-                            // Через 3 секунды убираем акцент
-                            setTimeout(() => {
-                                serviceCard.style.boxShadow = '';
-                            }, 3000);
-                        }, 300);
-                    }
-                });
-                
-                if (!found) {
-                    console.log('Услуга не найдена:', decodedService);
-                    console.log('Доступные значения:', Array.from(serviceRadios).map(r => r.value));
-                }
-            }
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-            // Получаем элементы
+            // Элементы формы
+            const bookingForm = document.getElementById('bookingForm');
+            const successMessage = document.getElementById('successMessage');
             const serviceOptions = document.querySelectorAll('.service-option input[type="radio"]');
             const dateTimeSection = document.getElementById('dateTimeSection');
             const contactSection = document.getElementById('contactSection');
+            const dateInput = document.getElementById('dateInput');
+            const timeSelect = document.getElementById('timeSelect');
+            const nameInput = document.getElementById('nameInput');
+            const phoneInput = document.getElementById('phoneInput');
+            const emailInput = document.getElementById('emailInput');
+            const messageInput = document.getElementById('messageInput');
             
-            // Обработчик выбора услуги
+            // 1. Показываем дату и время при выборе услуги
             serviceOptions.forEach(option => {
                 option.addEventListener('change', function() {
-                    if (this.checked) {
-                        // Показываем дату и время с анимацией
+                    if (this.checked && dateTimeSection) {
+                        // Визуальное выделение выбранной услуги
+                        document.querySelectorAll('.service-option').forEach(opt => {
+                            opt.style.borderColor = '';
+                        });
+                        this.closest('.service-option').style.borderColor = '#8b7355';
+                        
+                        // Показываем секцию с датой и временем
                         setTimeout(() => {
                             dateTimeSection.classList.add('show');
-                            // Прокручиваем к дате и времени
                             dateTimeSection.scrollIntoView({
                                 behavior: 'smooth',
                                 block: 'center'
@@ -295,87 +342,172 @@
                 });
             });
             
-            // Обработчик выбора даты и времени
-            const dateInput = document.querySelector('input[name="date"]');
-            const timeSelect = document.querySelector('select[name="time"]');
-            
+            // 2. Показываем контактные данные при выборе даты и времени
             function checkDateTime() {
-                if (dateInput.value && timeSelect.value) {
-                    // Показываем контактные данные с анимацией
+                if (dateInput && timeSelect && dateInput.value && timeSelect.value) {
                     setTimeout(() => {
-                        contactSection.classList.add('show');
-                        // Прокручиваем к контактным данным
-                        contactSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
+                        if (contactSection) {
+                            contactSection.classList.add('show');
+                            contactSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                        }
                     }, 300);
-                } else {
+                } else if (contactSection) {
                     contactSection.classList.remove('show');
                 }
             }
             
-            dateInput.addEventListener('change', checkDateTime);
-            timeSelect.addEventListener('change', checkDateTime);
-            
-            // Устанавливаем минимальную дату (завтра)
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
-            dateInput.min = tomorrowFormatted;
-            
-            // Устанавливаем максимальную дату (через 3 месяца)
-            const maxDate = new Date();
-            maxDate.setMonth(maxDate.getMonth() + 3);
-            const maxDateFormatted = maxDate.toISOString().split('T')[0];
-            dateInput.max = maxDateFormatted;
-            
-            // Заполняем дату значением по умолчанию (через 2 дня)
-            const defaultDate = new Date();
-            defaultDate.setDate(defaultDate.getDate() + 2);
-            const defaultDateFormatted = defaultDate.toISOString().split('T')[0];
-            dateInput.value = defaultDateFormatted;
-            
-            // Автоматически выбираем услугу из URL
-            autoSelectServiceFromURL();
-            
-            // Если услуга уже выбрана (при возврате назад в браузере)
-            const selectedService = document.querySelector('.service-option input[type="radio"]:checked');
-            if (selectedService) {
-                dateTimeSection.classList.add('show');
-                // Проверяем, если дата и время уже заполнены
-                setTimeout(checkDateTime, 100);
+            if (dateInput) {
+                dateInput.addEventListener('change', checkDateTime);
+                
+                // Настройка даты (от завтра до +3 месяца)
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+                
+                const maxDate = new Date();
+                maxDate.setMonth(maxDate.getMonth() + 3);
+                dateInput.max = maxDate.toISOString().split('T')[0];
+                
+                // Дата по умолчанию (через 2 дня)
+                const defaultDate = new Date();
+                defaultDate.setDate(defaultDate.getDate() + 2);
+                dateInput.value = defaultDate.toISOString().split('T')[0];
             }
             
-            // Обработчик отправки формы
-            const form = document.querySelector('.booking-form');
-            form.addEventListener('submit', function(e) {
-                // Проверяем все обязательные поля
-                const requiredFields = this.querySelectorAll('[required]');
-                let allValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        allValid = false;
-                        field.style.borderColor = 'red';
-                    } else {
-                        field.style.borderColor = '';
+            if (timeSelect) {
+                timeSelect.addEventListener('change', checkDateTime);
+                // Время по умолчанию
+                timeSelect.value = '14:00';
+            }
+            
+            // 3. Обработка отправки формы
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Останавливаем обычную отправку
+                    
+                    // Проверяем обязательные поля
+                    const requiredFields = [
+                        {field: document.querySelector('.service-option input[type="radio"]:checked'), name: 'услуга'},
+                        {field: dateInput, name: 'дата'},
+                        {field: timeSelect, name: 'время'},
+                        {field: nameInput, name: 'имя'},
+                        {field: phoneInput, name: 'телефон'},
+                        {field: emailInput, name: 'email'}
+                    ];
+                    
+                    let isValid = true;
+                    let firstInvalidField = null;
+                    
+                    requiredFields.forEach(item => {
+                        if (!item.field || !item.field.value.trim()) {
+                            isValid = false;
+                            if (item.field) {
+                                item.field.style.borderColor = '#ff4444';
+                                if (!firstInvalidField) firstInvalidField = item.field;
+                            }
+                        } else if (item.field) {
+                            item.field.style.borderColor = '';
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        alert('Пожалуйста, заполните все обязательные поля');
+                        if (firstInvalidField) {
+                            firstInvalidField.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
+                            firstInvalidField.focus();
+                        }
+                        return;
+                    }
+                    
+                    // Валидация email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (emailInput && !emailRegex.test(emailInput.value.trim())) {
+                        alert('Пожалуйста, введите корректный email адрес');
+                        emailInput.style.borderColor = '#ff4444';
+                        emailInput.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        emailInput.focus();
+                        return;
+                    }
+                    
+                    // Валидация телефона (простая проверка)
+                    if (phoneInput && phoneInput.value.trim().length < 7) {
+                        alert('Пожалуйста, введите корректный номер телефона');
+                        phoneInput.style.borderColor = '#ff4444';
+                        phoneInput.scrollIntoView({behavior: 'smooth', block: 'center'});
+                        phoneInput.focus();
+                        return;
+                    }
+                    
+                    // Если все проверки пройдены - показываем успешное сообщение
+                    if (successMessage) {
+                        // Скрываем форму
+                        bookingForm.style.display = 'none';
+                        
+                        // Показываем сообщение об успехе
+                        successMessage.classList.add('show');
+                        successMessage.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        
+                        // Здесь можно добавить отправку данных на сервер
+                        // Например, через fetch() к Google Forms или email-сервису
+                        console.log('Данные для отправки:', {
+                            service: document.querySelector('.service-option input[type="radio"]:checked').value,
+                            date: dateInput.value,
+                            time: timeSelect.value,
+                            name: nameInput.value,
+                            phone: phoneInput.value,
+                            email: emailInput.value,
+                            message: messageInput.value
+                        });
+                        
+                        // Пример отправки в Telegram (нужен бот)
+                        // sendToTelegram({
+                        //     service: document.querySelector('.service-option input[type="radio"]:checked').value,
+                        //     date: dateInput.value,
+                        //     time: timeSelect.value,
+                        //     name: nameInput.value,
+                        //     phone: phoneInput.value,
+                        //     email: emailInput.value,
+                        //     message: messageInput.value
+                        // });
                     }
                 });
+            }
+            
+            // 4. Автовыбор услуги из URL параметра (если есть)
+            function autoSelectServiceFromURL() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const serviceFromURL = urlParams.get('service');
                 
-                if (!allValid) {
-                    e.preventDefault();
-                    alert('Пожалуйста, заполните все обязательные поля');
+                if (serviceFromURL) {
+                    const decodedService = decodeURIComponent(serviceFromURL);
+                    serviceOptions.forEach(radio => {
+                        if (radio.value === decodedService) {
+                            radio.checked = true;
+                            const event = new Event('change');
+                            radio.dispatchEvent(event);
+                        }
+                    });
                 }
-            });
+            }
+            
+            autoSelectServiceFromURL();
+            
+            // 5. Если услуга уже выбрана (при возврате назад)
+            const selectedService = document.querySelector('.service-option input[type="radio"]:checked');
+            if (selectedService && dateTimeSection) {
+                dateTimeSection.classList.add('show');
+                setTimeout(checkDateTime, 100);
+            }
         });
-        
-        // Функция для открытия почтового клиента
-        function openMailClient() {
-            const subject = 'Запись на макияж';
-            const body = 'Здравствуйте! Я хочу записаться на макияж. Пожалуйста, свяжитесь со мной для уточнения деталей.';
-            window.location.href = `mailto:dasha-chernyshka@yandex.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        }
     </script>
 </body>
 </html>
