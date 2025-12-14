@@ -5,6 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Портфолио - Radiant Reflections</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .show-more-btn {
+                padding: 16px 32px;
+                font-size: 1.1rem;
+                min-height: 60px; /* Минимальная высота для удобного касания */
+                touch-action: manipulation; /* Улучшает обработку касаний */
+            }
+            
+            .filter-btn {
+                padding: 12px 20px;
+                margin: 5px;
+                font-size: 0.95rem;
+                touch-action: manipulation;
+            }
+            
+            /* Увеличиваем область касания для кнопок */
+            .filter-btn::after,
+            .show-more-btn::after {
+                content: '';
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+            }
+        }
+        
+        /* Стили для анимаций */
+        .portfolio-item {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+            transition: opacity 0.3s ease, transform 0.3s ease !important;
+        }
+        
+        .hidden-photo {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .hidden-photo.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Анимация для кнопки */
+        .show-more-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .show-more-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -371,20 +433,48 @@
                     
                     showMoreBtn.textContent = 'Показать больше фото из этой категории';
                 }
+                
+                // Прокручиваем к началу галереи на мобильных
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => {
+                        document.querySelector('.portfolio-grid').scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
+                }
             }
             
-            // Обработчики кликов на кнопки фильтров
+            // Обработчики кликов на кнопки фильтров (для десктопов)
             filterButtons.forEach(button => {
+                // Клик для десктопов
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+                    const filter = this.dataset.filter;
+                    filterPortfolio(filter);
+                });
+                
+                // Touch-событие для мобильных устройств
+                button.addEventListener('touchend', function(e) {
+                    e.preventDefault();
                     const filter = this.dataset.filter;
                     filterPortfolio(filter);
                 });
             });
             
-            // Обработчик кнопки "Показать еще"
+            // Обработчик кнопки "Показать еще" для десктопов
             showMoreBtn.addEventListener('click', showMorePhotos);
+            
+            // Обработчик для мобильных устройств (touch events)
+            showMoreBtn.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                showMorePhotos();
+                // Добавляем визуальную обратную связь
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
             
             // Обработка ошибок загрузки изображений
             document.querySelectorAll('.portfolio-item img').forEach(img => {
@@ -411,9 +501,25 @@
             
             // Инициализация - скрываем кнопку "Показать еще" на старте
             showMoreBtn.style.display = 'none';
+            
+            // Улучшение для мобильных: предотвращаем скроллинг при касании кнопок
+            filterButtons.forEach(btn => {
+                btn.addEventListener('touchstart', function(e) {
+                    // Предотвращаем зум при двойном касании
+                    if (e.touches.length > 1) {
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Для кнопки "Показать еще"
+            showMoreBtn.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            });
         });
     </script>
     <script src="script.js"></script>
-
 </body>
 </html>
