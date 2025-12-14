@@ -36,8 +36,38 @@
             background-color: #f9f5f0;
         }
         
-        /* Анимация кнопки отправки */
-        .btn-submit {
+        /* Стили для успешной отправки (локальное сообщение) */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #4CAF50;
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .checkmark {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        /* Кнопка подтверждения */
+        .btn-confirm {
             background: linear-gradient(135deg, #8b7355 0%, #a89276 100%);
             color: white;
             padding: 15px 40px;
@@ -49,36 +79,13 @@
             transition: all 0.3s ease;
             margin-top: 2rem;
             display: inline-block;
+            width: 100%;
+            max-width: 300px;
         }
         
-        .btn-submit:hover {
+        .btn-confirm:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(139, 115, 85, 0.3);
-        }
-        
-        .btn-submit:active {
-            transform: translateY(-1px);
-        }
-        
-        /* Стили для успешной отправки */
-        .success-message {
-            display: none;
-            background: #f0f9f0;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -97,7 +104,6 @@
                 </a>
             </div>
             
-            <!-- Гамбургер меню -->
             <button class="hamburger">
                 <span></span>
                 <span></span>
@@ -124,19 +130,24 @@
 
     <section class="booking">
         <div class="container">
-            <!-- Сообщение об успешной отправке (изначально скрыто) -->
+            <!-- Сообщение об успешной отправке (скрыто изначально) -->
             <div id="successMessage" class="success-message">
-                <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 1rem;">✓</div>
-                <h2 style="color: #2E7D32;">Заявка отправлена!</h2>
-                <p>Спасибо за вашу заявку. Я свяжусь с вами в ближайшее время для подтверждения записи.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="index.html" class="btn-primary" style="margin-right: 1rem;">На главную</a>
-                    <a href="booking.html" class="btn-secondary">Новая запись</a>
+                <span class="checkmark">✓</span>
+                <h2 style="color: #2E7D32; margin-bottom: 1rem;">Заявка принята!</h2>
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                    Спасибо за вашу заявку. Сейчас вы будете перенаправлены на страницу подтверждения.
+                </p>
+                <div style="background: white; padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0; text-align: left;">
+                    <h4 style="color: #8b7355; margin-bottom: 1rem;">Детали вашей записи:</h4>
+                    <div id="successDetails"></div>
                 </div>
+                <p style="color: #666; font-size: 0.9rem;">
+                    Перенаправление через <span id="countdown">5</span> секунд...
+                </p>
             </div>
 
             <!-- Форма записи -->
-            <form id="bookingForm" class="booking-form">
+            <form id="bookingForm" class="booking-form" action="thank-you.html" method="get">
                 <input type="hidden" name="form_type" value="booking">
                 
                 <h2>Выберите услугу</h2>
@@ -177,7 +188,6 @@
                         </div>
                     </label>
 
-                    <!-- Свадебный пакет премиум -->
                     <label class="service-option">
                         <input type="radio" name="service" value="Свадебный пакет премиум">
                         <div class="option-content">
@@ -187,7 +197,6 @@
                         </div>
                     </label>
 
-                    <!-- Курс "Мастер макияжа" -->
                     <label class="service-option">
                         <input type="radio" name="service" value="Курс 'Мастер макияжа'">
                         <div class="option-content">
@@ -197,7 +206,6 @@
                         </div>
                     </label>
 
-                    <!-- Осеннее преображение -->
                     <label class="service-option">
                         <input type="radio" name="service" value="Осеннее преображение">
                         <div class="option-content">
@@ -207,7 +215,6 @@
                         </div>
                     </label>
 
-                    <!-- Приведи подругу -->
                     <label class="service-option">
                         <input type="radio" name="service" value="Приведи подругу">
                         <div class="option-content">
@@ -218,7 +225,7 @@
                     </label>
                 </div>
 
-                <!-- Дата и время (скрыто изначально) -->
+                <!-- Дата и время -->
                 <div id="dateTimeSection" class="hidden-section">
                     <h2>Выберите дату и время</h2>
                     <div class="form-group">
@@ -243,7 +250,7 @@
                     </div>
                 </div>
 
-                <!-- Контактные данные (скрыто изначально) -->
+                <!-- Контактные данные -->
                 <div id="contactSection" class="hidden-section">
                     <h2>Ваши контактные данные</h2>
                     <div class="form-group">
@@ -262,10 +269,11 @@
                         <textarea id="messageInput" name="message" placeholder="Дополнительные пожелания..." rows="3"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-submit">Подтвердить запись</button>
+                    <button type="submit" class="btn-confirm">Подтвердить запись</button>
                 </div>
             </form>
 
+            <!-- Альтернативные способы записи -->
             <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--light); border-radius: 10px;">
                 <h3>Альтернативные способы записи</h3>
                 <p>Если форма не работает, свяжитесь со мной напрямую:</p>
@@ -283,7 +291,6 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <!-- Логотип в футере как на главной -->
                     <a href="index.html" style="text-decoration: none; color: inherit;">
                         <div class="logo-container" style="gap: 0.8rem;">
                             <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
@@ -310,6 +317,7 @@
             // Элементы формы
             const bookingForm = document.getElementById('bookingForm');
             const successMessage = document.getElementById('successMessage');
+            const successDetails = document.getElementById('successDetails');
             const serviceOptions = document.querySelectorAll('.service-option input[type="radio"]');
             const dateTimeSection = document.getElementById('dateTimeSection');
             const contactSection = document.getElementById('contactSection');
@@ -386,8 +394,6 @@
             // 3. Обработка отправки формы
             if (bookingForm) {
                 bookingForm.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Останавливаем обычную отправку
-                    
                     // Проверяем обязательные поля
                     const requiredFields = [
                         {field: document.querySelector('.service-option input[type="radio"]:checked'), name: 'услуга'},
@@ -413,8 +419,29 @@
                         }
                     });
                     
+                    // Валидация email
+                    if (emailInput && emailInput.value.trim()) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(emailInput.value.trim())) {
+                            isValid = false;
+                            emailInput.style.borderColor = '#ff4444';
+                            if (!firstInvalidField) firstInvalidField = emailInput;
+                        }
+                    }
+                    
+                    // Валидация телефона
+                    if (phoneInput && phoneInput.value.trim()) {
+                        const phoneRegex = /^[\d\s\-\+\(\)]{7,20}$/;
+                        if (!phoneRegex.test(phoneInput.value.trim())) {
+                            isValid = false;
+                            phoneInput.style.borderColor = '#ff4444';
+                            if (!firstInvalidField) firstInvalidField = phoneInput;
+                        }
+                    }
+                    
                     if (!isValid) {
-                        alert('Пожалуйста, заполните все обязательные поля');
+                        e.preventDefault();
+                        alert('Пожалуйста, проверьте заполнение всех полей. Убедитесь, что email и телефон введены правильно.');
                         if (firstInvalidField) {
                             firstInvalidField.scrollIntoView({
                                 behavior: 'smooth',
@@ -422,67 +449,87 @@
                             });
                             firstInvalidField.focus();
                         }
-                        return;
+                        return false;
                     }
                     
-                    // Валидация email
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (emailInput && !emailRegex.test(emailInput.value.trim())) {
-                        alert('Пожалуйста, введите корректный email адрес');
-                        emailInput.style.borderColor = '#ff4444';
-                        emailInput.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        emailInput.focus();
-                        return;
-                    }
+                    // Если все проверки пройдены - показываем красивое сообщение
+                    e.preventDefault(); // Останавливаем стандартную отправку
                     
-                    // Валидация телефона (простая проверка)
-                    if (phoneInput && phoneInput.value.trim().length < 7) {
-                        alert('Пожалуйста, введите корректный номер телефона');
-                        phoneInput.style.borderColor = '#ff4444';
-                        phoneInput.scrollIntoView({behavior: 'smooth', block: 'center'});
-                        phoneInput.focus();
-                        return;
-                    }
+                    // Собираем детали для отображения
+                    const service = document.querySelector('.service-option input[type="radio"]:checked').value;
+                    const date = new Date(dateInput.value).toLocaleDateString('ru-RU', {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    const time = timeSelect.value;
+                    const name = nameInput.value;
                     
-                    // Если все проверки пройдены - показываем успешное сообщение
-                    if (successMessage) {
-                        // Скрываем форму
-                        bookingForm.style.display = 'none';
+                    // Отображаем детали в сообщении
+                    let detailsHTML = `
+                        <p><strong>Услуга:</strong> ${service}</p>
+                        <p><strong>Дата:</strong> ${date}</p>
+                        <p><strong>Время:</strong> ${time}</p>
+                        <p><strong>Имя:</strong> ${name}</p>
+                    `;
+                    
+                    successDetails.innerHTML = detailsHTML;
+                    
+                    // Показываем красивое сообщение
+                    bookingForm.style.display = 'none';
+                    successMessage.classList.add('show');
+                    successMessage.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    
+                    // Запускаем отсчет и перенаправление
+                    let countdown = 5;
+                    const countdownElement = document.getElementById('countdown');
+                    
+                    const countdownInterval = setInterval(() => {
+                        countdown--;
+                        countdownElement.textContent = countdown;
                         
-                        // Показываем сообщение об успехе
-                        successMessage.classList.add('show');
-                        successMessage.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
+                        if (countdown <= 0) {
+                            clearInterval(countdownInterval);
+                            // Отправляем форму через GET на thank-you.html
+                            bookingForm.submit();
+                        }
+                    }, 1000);
+                    
+                    // Можно отменить перенаправление
+                    const cancelRedirect = document.createElement('button');
+                    cancelRedirect.className = 'btn-secondary';
+                    cancelRedirect.style.marginTop = '1rem';
+                    cancelRedirect.textContent = 'Отмена перенаправления';
+                    cancelRedirect.onclick = function() {
+                        clearInterval(countdownInterval);
+                        this.style.display = 'none';
+                        countdownElement.textContent = 'отменено';
                         
-                        // Здесь можно добавить отправку данных на сервер
-                        // Например, через fetch() к Google Forms или email-сервису
-                        console.log('Данные для отправки:', {
-                            service: document.querySelector('.service-option input[type="radio"]:checked').value,
-                            date: dateInput.value,
-                            time: timeSelect.value,
-                            name: nameInput.value,
-                            phone: phoneInput.value,
-                            email: emailInput.value,
-                            message: messageInput.value
-                        });
+                        // Показываем кнопку для ручного перехода
+                        const manualRedirect = document.createElement('a');
+                        manualRedirect.href = '#';
+                        manualRedirect.className = 'btn-primary';
+                        manualRedirect.style.marginTop = '1rem';
+                        manualRedirect.textContent = 'Перейти на страницу подтверждения';
+                        manualRedirect.onclick = function(e) {
+                            e.preventDefault();
+                            bookingForm.submit();
+                        };
                         
-                        // Пример отправки в Telegram (нужен бот)
-                        // sendToTelegram({
-                        //     service: document.querySelector('.service-option input[type="radio"]:checked').value,
-                        //     date: dateInput.value,
-                        //     time: timeSelect.value,
-                        //     name: nameInput.value,
-                        //     phone: phoneInput.value,
-                        //     email: emailInput.value,
-                        //     message: messageInput.value
-                        // });
-                    }
+                        successMessage.querySelector('.checkmark').parentNode.appendChild(manualRedirect);
+                    };
+                    
+                    successMessage.querySelector('.checkmark').parentNode.appendChild(cancelRedirect);
+                    
+                    return false;
                 });
             }
             
-            // 4. Автовыбор услуги из URL параметра (если есть)
+            // 4. Автовыбор услуги из URL параметра
             function autoSelectServiceFromURL() {
                 const urlParams = new URLSearchParams(window.location.search);
                 const serviceFromURL = urlParams.get('service');
