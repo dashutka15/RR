@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасибо! - Radiant Reflections</title>
+    <link rel="stylesheet" href="css/thank.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <!-- Добавлена ссылка на главную страницу -->
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo-container">
+                        <div class="logo">RR</div>
+                        <div class="logo-text">
+                            <div class="logo-main">Radiant Reflections</div>
+                            <div class="logo-sub">Профессиональный визажист</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Гамбургер меню -->
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="portfolio.html">Портфолио</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="booking.html">Запись</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 id="mainTitle" class="fade-in">Спасибо!</h1>
+            <p id="subTitle" class="fade-in delay-1">Ваше сообщение успешно отправлено</p>
+        </div>
+    </section>
+
+    <section class="thank-you">
+        <div class="container">
+            <div style="text-align: center; padding: 3rem 2rem;">
+                
+                <!-- Блок с деталями записи будет вставлен здесь -->
+                <div id="bookingDetailsContainer"></div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;" class="fade-in delay-3">
+                    <a href="index.html" class="btn-primary">Вернуться на главную</a>
+                    <a href="booking.html" class="btn-secondary">Записаться еще</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <!-- Логотип в футере как на главной -->
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <div class="logo-container" style="gap: 0.8rem;">
+                            <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
+                            <div class="logo-text">
+                                <div class="logo-main" style="color: white; font-size: 1.3rem;">Radiant Reflections</div>
+                                <div class="logo-sub" style="color: rgba(255,255,255,0.7);">Ваш профессиональный визажист</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Radiant Reflections. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем параметры из URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const formType = urlParams.get('form_type');
+            
+            if (formType === 'booking') {
+                // Если это форма записи, отображаем данные
+                const service = urlParams.get('service');
+                const date = urlParams.get('date');
+                const time = urlParams.get('time');
+                const name = urlParams.get('name');
+                const phone = urlParams.get('phone');
+                const email = urlParams.get('email');
+                const message = urlParams.get('message');
+                
+                // Создаем блок с деталями записи
+                if (service || date || time || name) {
+                    const bookingDetails = document.createElement('div');
+                    bookingDetails.className = 'booking-details fade-in delay-2';
+                    
+                    let detailsHTML = '<h3>Детали вашей записи</h3>';
+                    detailsHTML += '<div class="booking-info">';
+                    
+                    if (service) {
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Услуга:</span>
+                                <span class="booking-value">${service}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (date) {
+                        // Форматируем дату
+                        const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                        });
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Дата:</span>
+                                <span class="booking-value">${formattedDate}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (time) {
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Время:</span>
+                                <span class="booking-value">${time}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (name) {
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Имя:</span>
+                                <span class="booking-value">${name}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (phone) {
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Телефон:</span>
+                                <span class="booking-value">${phone}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (email) {
+                        detailsHTML += `
+                            <div class="booking-item">
+                                <span class="booking-label">Email:</span>
+                                <span class="booking-value">${email}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    detailsHTML += '</div>'; // Закрываем .booking-info
+                    
+                    // Добавляем пожелания если есть
+                    if (message) {
+                        detailsHTML += `
+                            <div style="text-align: left; margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.7); border-radius: 8px;">
+                                <span class="booking-label">Ваши пожелания:</span>
+                                <p style="color: var(--gray); margin-top: 0.5rem;">${message}</p>
+                            </div>
+                        `;
+                    }
+                    
+                    // Добавляем примечание
+                    detailsHTML += `
+                        <div class="booking-note">
+                            <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary);">
+                                 Важная информация:
+                            </p>
+                            <p>
+                                Я свяжусь с вами в течение 24 часов для подтверждения записи. 
+                                Если у вас есть срочные вопросы, звоните: 
+                                <strong style="color: var(--primary);">+7 (999) 123-45-67</strong>
+                            </p>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                                <em>Сохраните эту страницу или запишите номер заявки: 
+                                <strong>RR${Date.now().toString().slice(-6)}</strong></em>
+                            </p>
+                        </div>
+                    `;
+                    
+                    bookingDetails.innerHTML = detailsHTML;
+                    
+                    // Вставляем блок в контейнер
+                    const container = document.getElementById('bookingDetailsContainer');
+                    container.appendChild(bookingDetails);
+                }
+                
+                // Отправляем данные на email (симуляция)
+                setTimeout(() => {
+                    console.log('Запись отправлена на email: dasha-chernyshka@yandex.ru');
+                    console.log('Данные записи:', {
+                        service, date, time, name, phone, email, message
+                    });
+                }, 1000);
+            } else {
+                // Если это обычная страница благодарности (не из формы)
+                // Оставляем стандартное сообщение
+            }
+            
+            // Очищаем историю URL чтобы при обновлении страницы не было дублирования
+            if (window.history.replaceState && urlParams.toString()) {
+                const cleanURL = window.location.pathname;
+                window.history.replaceState({}, document.title, cleanURL);
+            }
+            
+            // Добавляем возможность поделиться записью
+            if (formType === 'booking') {
+                const shareBtn = document.createElement('button');
+                shareBtn.className = 'btn-secondary';
+                shareBtn.style.marginTop = '1rem';
+                shareBtn.innerHTML = 'Поделиться записью';
+                shareBtn.onclick = function() {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Моя запись к визажисту',
+                            text: `Я записался(ась) на макияж в Radiant Reflections!`,
+                            url: window.location.href
+                        });
+                    } else {
+                        navigator.clipboard.writeText(window.location.href).then(() => {
+                            alert('Ссылка на запись скопирована в буфер обмена!');
+                        });
+                    }
+                };
+                
+                const buttonsContainer = document.querySelector('.thank-you .container > div:last-child');
+                buttonsContainer.appendChild(shareBtn);
+            }
+        });
+    </script>
+</body>
+</html>
