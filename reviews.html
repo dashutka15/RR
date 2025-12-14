@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы - Radiant Reflections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+         <nav class="nav">
+            <div class="nav-brand">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <div class="logo-container">
+                        <div class="logo">RR</div>
+                        <div class="logo-text">
+                            <div class="logo-main">Radiant Reflections</div>
+                            <div class="logo-sub">Профессиональный визажист</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Гамбургер меню -->
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="services.html">Услуги</a></li>
+                <li><a href="portfolio.html">Портфолио</a></li>
+                <li><a href="reviews.html" class="active">Отзывы</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="booking.html">Запись</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Отзывы клиентов</h1>
+            <p>Реальные истории и впечатления от работы</p>
+            
+            <!-- Кнопка "Оставить отзыв" -->
+            <div class="leave-review-btn-container">
+                <a href="#review-form-section" class="leave-review-btn">
+                    <span></span> Оставить свой отзыв
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div class="container">
+            <!-- Статистика отзывов -->
+            <div class="reviews-stats">
+                <div class="stat-item">
+                    <span class="stat-number">4.9</span>
+                    <span class="stat-label">Средняя оценка</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">127+</span>
+                    <span class="stat-label">Довольных клиентов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Рекомендуют</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4.9</span>
+                    <span class="stat-label">Качество услуг</span>
+                </div>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Елена создала потрясающий свадебный образ! Я чувствовала себя невестой мечты. Макияж держался весь день, несмотря на слезы счастья! Профессионализм высшего уровня.</p>
+                    <div class="review-author">
+                        <strong>Анна Иванова</strong>
+                        <span>Свадебный макияж • Май 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Профессионал высшего класса! Умеет подчеркнуть достоинства и скрыть недостатки. Обязательно буду обращаться еще для всех важных мероприятий.</p>
+                    <div class="review-author">
+                        <strong>Мария Смирнова</strong>
+                        <span>Вечерний макияж • Июнь 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★☆</div>
+                    <p class="review-text">Брала уроки макияжа - получила массу полезных советов. Теперь могу сама создавать красивые образы для разных мероприятий. Отличный преподаватель!</p>
+                    <div class="review-author">
+                        <strong>Ирина Петрова</strong>
+                        <span>Обучение макияжу • Апрель 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Очень внимательный подход к клиенту. Учтены все пожелания и особенности внешности. Результат превзошел ожидания! Спасибо за прекрасную работу.</p>
+                    <div class="review-author">
+                        <strong>София Козлова</strong>
+                        <span>Express-макияж • Март 2025</span>
+                    </div>
+                </div>
+
+                <!-- Новые отзывы -->
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Приходила на корпоративное мероприятие. Елена создала элегантный и соответствующий случаю образ. Все коллеги отметили отличный макияж. Рекомендую!</p>
+                    <div class="review-author">
+                        <strong>Елена Соколова</strong>
+                        <span>Вечерний макияж • Июль 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Обратилась для создания образа на выпускной дочери. Елена учла все пожелания подростка и создала современный, стильный макияж. Дочь была в восторге!</p>
+                    <div class="review-author">
+                        <strong>Татьяна Михайлова</strong>
+                        <span>Express-макияж • Май 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Секция формы отзыва с ID для якоря -->
+            <div class="add-review-section" id="review-form-section">
+                <h2>Оставить свой отзыв</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    Поделитесь своими впечатлениями о работе с нами. Ваше мнение поможет другим клиентам сделать правильный выбор.
+                </p>
+                <form class="review-form" action="mailto:dasha-chernyshka@yandex.ru" method="post" enctype="text/plain">
+                    <input type="hidden" name="Тип заявки" value="Отзыв">
+                    
+                    <div class="form-group">
+                        <input type="text" name="Имя" placeholder="Ваше имя" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select name="Услуга" required>
+                            <option value="">Выберите услугу</option>
+                            <option value="Свадебный визаж">Свадебный макияж</option>
+                            <option value="Вечерний макияж">Вечерний макияж</option>
+                            <option value="Обучение визажу">Обучение макияжу</option>
+                            <option value="Express-макияж">Express-макияж</option>
+                            <option value="Свадебный пакет Премиум">Свадебный пакет Премиум</option>
+                            <option value="Курс 'Мастер макияжа'">Курс 'Мастер макияжа'</option>
+                            <option value="Осеннее преображение">Курс Осеннее преображение</option>
+                            <option value="Приведи подругу">Приведи подругу</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea name="Отзыв" placeholder="Расскажите о вашем опыте..." rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="rating-select-container">
+                        <label class="rating-select-label">Ваша оценка:</label>
+                        <select name="Оценка" class="rating-select" required>
+                            <option value="">-- Выберите оценку --</option>
+                            <option value="5">★★★★★ - Отлично</option>
+                            <option value="4">★★★★ - Очень хорошо</option>
+                            <option value="3">★★★ - Хорошо</option>
+                            <option value="2">★★ - Удовлетворительно</option>
+                            <option value="1">★ - Плохо</option>
+                        </select>
+                        <div class="rating-description">
+                            Выберите подходящую оценку из списка
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Отправить отзыв</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <!-- Логотип в футере как на главной -->
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <div class="logo-container" style="gap: 0.8rem;">
+                            <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
+                            <div class="logo-text">
+                                <div class="logo-main" style="color: white; font-size: 1.3rem;">Radiant Reflections</div>
+                                <div class="logo-sub" style="color: rgba(255,255,255,0.7);">Ваш профессиональный визажист</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="contacts.html">Контакты</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Radiant Reflections. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Добавляем валидацию формы
+            const reviewForm = document.querySelector('.review-form');
+            reviewForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Простая валидация
+                const name = this.querySelector('input[name="Имя"]').value.trim();
+                const service = this.querySelector('select[name="Услуга"]').value;
+                const review = this.querySelector('textarea[name="Отзыв"]').value.trim();
+                const rating = this.querySelector('select[name="Оценка"]').value;
+                
+                if (!name || !service || !review || !rating) {
+                    alert('Пожалуйста, заполните все обязательные поля');
+                    return;
+                }
+                
+                // Имитация отправки
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Отправка...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Спасибо за ваш отзыв! Он будет опубликован после проверки.');
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+            
+            // Анимация при наведении на карточки отзывов
+            const reviewCards = document.querySelectorAll('.review-card');
+            reviewCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Плавная прокрутка к форме при нажатии на кнопку "Оставить отзыв"
+            const leaveReviewBtn = document.querySelector('.leave-review-btn');
+            if (leaveReviewBtn) {
+                leaveReviewBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Плавная прокрутка
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Добавляем анимацию подсветки формы
+                        targetElement.style.transition = 'all 0.5s ease';
+                        targetElement.style.boxShadow = '0 0 0 3px rgba(139, 115, 85, 0.3)';
+                        
+                        setTimeout(() => {
+                            targetElement.style.boxShadow = '';
+                        }, 1500);
+                    }
+                });
+            }
+            
+            // Если в URL есть якорь #review-form-section, прокручиваем к форме
+            if (window.location.hash === '#review-form-section') {
+                const formSection = document.getElementById('review-form-section');
+                if (formSection) {
+                    setTimeout(() => {
+                        formSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+
+</body>
+</html>
