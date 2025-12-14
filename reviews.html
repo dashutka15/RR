@@ -6,51 +6,62 @@
     <title>Отзывы - Radiant Reflections</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Общие стили для формы отзывов */
-        .add-review-section {
-            background: linear-gradient(135deg, #f9f5f0 0%, #f1ebe4 100%);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 3rem auto;
-            max-width: 600px;
-            border: 1px solid #e8e1d7;
-        }
-        
-        .add-review-section h2 {
+        /* Дополнительные стили только для страницы отзывов */
+        .leave-review-btn-container {
             text-align: center;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 2rem;
+            margin: 2.5rem 0 0 0;
         }
         
-        .add-review-section > p {
-            text-align: center;
-            color: #666;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+        .leave-review-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.2);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Стили полей как на фото */
+        .leave-review-btn:hover {
+            background: linear-gradient(135deg, #7a6345 0%, #c4a886 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+        .leave-review-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .leave-review-btn span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M18.9 3.1C18.3 2.5 17.4 2.5 16.8 3.1L8.6 11.3 7.9 13.1l1.8-.7 8.2-8.2c.6-.6.6-1.5 0-2.1zM21.4 0c-.4 0-.7.1-1 .4L19 1.8l3.2 3.2 1.4-1.4c.3-.3.4-.6.4-1C24 .6 22.9 0 21.4 0zM3 19.5V24h4.5l13.8-13.8-4.5-4.5L3 19.5z"/></svg>') no-repeat center;
+            background-size: contain;
+            margin-right: 8px;
+        }
+        
+        /* Форма отзывов */
         .review-form .form-group {
             margin-bottom: 1.8rem;
         }
         
-        /* Заголовки над полями */
-        .field-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 1rem;
-        }
-        
-        /* Поля ввода как на фото - с закругленными углами и тенями */
         .review-form input[type="text"],
         .review-form textarea,
         .review-form select {
             width: 100%;
             padding: 14px 18px;
-            border: 1px solid #d1c7b7;
+            border: 2px solid rgba(139, 115, 85, 0.15);
             border-radius: 12px;
             font-size: 16px;
             font-family: inherit;
@@ -60,9 +71,12 @@
             box-sizing: border-box;
         }
         
-        /* Особые стили для текстовых полей */
-        .review-form input[type="text"] {
-            height: 52px;
+        .review-form input[type="text"]:focus,
+        .review-form textarea:focus,
+        .review-form select:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 2px 12px rgba(139, 115, 85, 0.15);
         }
         
         .review-form textarea {
@@ -72,7 +86,6 @@
             padding: 16px 18px;
         }
         
-        /* Стили для select как на фото */
         .review-form select {
             height: 52px;
             appearance: none;
@@ -84,36 +97,30 @@
             cursor: pointer;
         }
         
-        /* Фокус-эффекты как на фото */
-        .review-form input[type="text"]:focus,
-        .review-form textarea:focus,
-        .review-form select:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 2px 12px rgba(139, 115, 85, 0.15);
-        }
-        
-        /* Контейнер для оценки */
-        .rating-select-container {
-            margin: 2rem 0;
-        }
-        
         .rating-select-label {
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
             color: #333;
             font-size: 1rem;
+            text-align: left;
         }
         
-        /* Кнопка отправки */
-        .review-form .submit-btn {
+        .rating-description {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--gray);
+            font-style: italic;
+            text-align: left;
+        }
+        
+        .review-form button[type="submit"] {
             display: block;
             width: 100%;
             max-width: 280px;
             margin: 2.5rem auto 0;
             padding: 16px 32px;
-            background: linear-gradient(135deg, var(--secondary) 0%, #9c7f5f 100%);
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -124,82 +131,38 @@
             box-shadow: 0 4px 15px rgba(139, 115, 85, 0.2);
         }
         
-        .review-form .submit-btn:hover {
+        .review-form button[type="submit"]:hover {
+            background: linear-gradient(135deg, #7a6345 0%, #c4a886 100%);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
         }
         
-        .review-form .submit-btn:active {
+        .review-form button[type="submit"]:active {
             transform: translateY(0);
         }
         
-        /* Плейсхолдеры */
-        .review-form input::placeholder,
-        .review-form textarea::placeholder {
-            color: #999;
-        }
-        
-        /* Обязательные поля */
-        .required-field::after {
-            content: " *";
-            color: #ff4444;
+        /* Анимация для плавной прокрутки */
+        html {
+            scroll-behavior: smooth;
         }
         
         /* Стили для мобильных */
         @media (max-width: 768px) {
-            .add-review-section {
-                padding: 2rem 1.5rem;
-                margin: 2rem auto;
-                border-radius: 16px;
+            .leave-review-btn {
+                padding: 12px 24px;
+                font-size: 1rem;
             }
             
             .review-form input[type="text"],
             .review-form textarea,
             .review-form select {
-                padding: 16px;
+                padding: 12px 16px;
             }
             
-            .review-form .submit-btn {
+            .review-form button[type="submit"] {
                 max-width: 100%;
-                padding: 18px;
+                padding: 14px;
             }
-        }
-        
-        /* Стили для кнопки "Оставить отзыв" в шапке */
-        .leave-review-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--secondary) 0%, #9c7f5f 100%);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.2);
-        }
-        
-        .leave-review-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(139, 115, 85, 0.3);
-        }
-        
-        .leave-review-btn-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        /* Описание под полем оценки */
-        .rating-description {
-            margin-top: 8px;
-            font-size: 14px;
-            color: #888;
-            font-style: italic;
         }
     </style>
 </head>
@@ -242,7 +205,7 @@
             
             <div class="leave-review-btn-container">
                 <a href="#review-form-section" class="leave-review-btn">
-                    Оставить свой отзыв
+                    <span></span> Оставить свой отзыв
                 </a>
             </div>
         </div>
@@ -270,7 +233,6 @@
             </div>
 
             <div class="reviews-grid">
-                <!-- Существующие отзывы остаются без изменений -->
                 <div class="review-card">
                     <div class="review-rating">★★★★★</div>
                     <p class="review-text">Елена создала потрясающий свадебный образ! Я чувствовала себя невестой мечты. Макияж держался весь день, несмотря на слезы счастья! Профессионализм высшего уровня.</p>
@@ -280,7 +242,41 @@
                     </div>
                 </div>
 
-                <!-- ... остальные отзывы ... -->
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Профессионал высшего класса! Умеет подчеркнуть достоинства и скрыть недостатки. Обязательно буду обращаться еще для всех важных мероприятий.</p>
+                    <div class="review-author">
+                        <strong>Мария Смирнова</strong>
+                        <span>Вечерний макияж • Июнь 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★☆</div>
+                    <p class="review-text">Брала уроки макияжа - получила массу полезных советов. Теперь могу сама создавать красивые образы для разных мероприятий. Отличный преподаватель!</p>
+                    <div class="review-author">
+                        <strong>Ирина Петрова</strong>
+                        <span>Обучение макияжу • Апрель 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Очень внимательный подход к клиенту. Учтены все пожелания и особенности внешности. Результат превзошел ожидания! Спасибо за прекрасную работу.</p>
+                    <div class="review-author">
+                        <strong>София Козлова</strong>
+                        <span>Express-макияж • Март 2025</span>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">Приходила на корпоративное мероприятие. Елена создала элегантный и соответствующий случаю образ. Все коллеги отметили отличный макияж. Рекомендую!</p>
+                    <div class="review-author">
+                        <strong>Елена Соколова</strong>
+                        <span>Вечерний макияж • Июль 2025</span>
+                    </div>
+                </div>
 
                 <div class="review-card">
                     <div class="review-rating">★★★★★</div>
@@ -292,23 +288,21 @@
                 </div>
             </div>
 
-            <!-- Секция формы отзыва -->
             <div class="add-review-section" id="review-form-section">
                 <h2>Оставить свой отзыв</h2>
-                <p>Поделитесь своими впечатлениями о работе с нами. Ваше мнение поможет другим клиентам сделать правильный выбор.</p>
-                
+                <p style="color: var(--gray); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    Поделитесь своими впечатлениями о работе с нами. Ваше мнение поможет другим клиентам сделать правильный выбор.
+                </p>
                 <form class="review-form" action="mailto:dasha-chernyshka@yandex.ru" method="post" enctype="text/plain">
                     <input type="hidden" name="Тип заявки" value="Отзыв">
                     
                     <div class="form-group">
-                        <label class="field-label required-field">Ваше имя</label>
-                        <input type="text" name="Имя" placeholder="Введите ваше имя" required>
+                        <input type="text" name="Имя" placeholder="Ваше имя" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="field-label required-field">Выберите услугу</label>
                         <select name="Услуга" required>
-                            <option value="" disabled selected>-- Выберите услугу --</option>
+                            <option value="">Выберите услугу</option>
                             <option value="Свадебный визаж">Свадебный макияж</option>
                             <option value="Вечерний макияж">Вечерний макияж</option>
                             <option value="Обучение визажу">Обучение макияжу</option>
@@ -321,14 +315,13 @@
                     </div>
                     
                     <div class="form-group">
-                        <label class="field-label required-field">Расскажите о вашем опыте</label>
-                        <textarea name="Отзыв" placeholder="Поделитесь вашими впечатлениями..." rows="5" required></textarea>
+                        <textarea name="Отзыв" placeholder="Расскажите о вашем опыте..." rows="5" required></textarea>
                     </div>
                     
                     <div class="rating-select-container">
-                        <label class="field-label required-field">Ваша оценка</label>
+                        <label class="rating-select-label">Ваша оценка:</label>
                         <select name="Оценка" class="rating-select" required>
-                            <option value="" disabled selected>-- Выберите оценку --</option>
+                            <option value="">-- Выберите оценку --</option>
                             <option value="5">★★★★★ - Отлично</option>
                             <option value="4">★★★★ - Очень хорошо</option>
                             <option value="3">★★★ - Хорошо</option>
@@ -340,7 +333,7 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="submit-btn">Отправить отзыв</button>
+                    <button type="submit" class="btn-primary">Отправить отзыв</button>
                 </form>
             </div>
         </div>
@@ -386,7 +379,7 @@
                     return;
                 }
                 
-                const submitBtn = this.querySelector('.submit-btn');
+                const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Отправка...';
                 submitBtn.disabled = true;
@@ -399,7 +392,6 @@
                 }, 1500);
             });
             
-            // Остальной JavaScript код без изменений
             const reviewCards = document.querySelectorAll('.review-card');
             reviewCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
@@ -446,6 +438,25 @@
                     }, 300);
                 }
             }
+            
+            // Гамбургер меню
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Закрытие меню при клике на ссылку
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
         });
     </script>
     <script src="script.js"></script>
