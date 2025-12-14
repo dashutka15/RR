@@ -5,6 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отзывы - Radiant Reflections</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для одинаковых размеров полей формы */
+        .add-review-section .review-form .form-group input,
+        .add-review-section .review-form .form-group select,
+        .add-review-section .review-form .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            box-sizing: border-box;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: white;
+            margin: 0;
+            display: block;
+        }
+        
+        /* Особые стили для input и select (одинаковая высота) */
+        .add-review-section .review-form .form-group input,
+        .add-review-section .review-form .form-group select {
+            height: 50px;
+            line-height: 22px;
+        }
+        
+        /* Стиль для select */
+        .add-review-section .review-form .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        
+        /* Стиль для textarea */
+        .add-review-section .review-form .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        
+        /* Фокус-стили для всех полей */
+        .add-review-section .review-form .form-group input:focus,
+        .add-review-section .review-form .form-group select:focus,
+        .add-review-section .review-form .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+        
+        /* Контейнер для оценки */
+        .rating-select-container {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        .rating-select-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        
+        .rating-select {
+            width: 100%;
+            padding: 14px 16px;
+            box-sizing: border-box;
+            height: 50px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+            padding-right: 40px;
+            appearance: none;
+        }
+        
+        .rating-description {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* Кнопка отправки */
+        .add-review-section .review-form .btn-primary {
+            width: 100%;
+            max-width: 300px;
+            padding: 15px 30px;
+            font-size: 16px;
+            height: 50px;
+            display: block;
+            margin: 20px auto 0;
+            border-radius: 8px;
+        }
+        
+        /* Выравнивание формы */
+        .add-review-section .review-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .add-review-section .review-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .add-review-section .review-form .form-group input,
+            .add-review-section .review-form .form-group select,
+            .add-review-section .review-form .form-group textarea {
+                padding: 16px;
+                font-size: 16px; /* Предотвращает зум в iOS */
+            }
+            
+            .add-review-section .review-form .btn-primary {
+                max-width: 100%;
+                padding: 16px;
+            }
+        }
+        
+        /* Стили для кнопки "Оставить отзыв" в шапке */
+        .leave-review-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            height: 45px;
+        }
+        
+        .leave-review-btn:hover {
+            background-color: #7a6145;
+            transform: translateY(-2px);
+        }
+        
+        .leave-review-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -47,7 +199,7 @@
             <!-- Кнопка "Оставить отзыв" -->
             <div class="leave-review-btn-container">
                 <a href="#review-form-section" class="leave-review-btn">
-                    <span></span> Оставить свой отзыв
+                    Оставить свой отзыв
                 </a>
             </div>
         </div>
@@ -295,6 +447,5 @@
         });
     </script>
     <script src="script.js"></script>
-
 </body>
 </html>
