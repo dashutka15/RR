@@ -4,13 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Спасибо! - Radiant Reflections</title>
-    <link rel="stylesheet" href="css/thank.css">
+    <link rel="stylesheet" href="style.css"> <!-- Исправлено: стили из основного файла -->
+    <style>
+        /* Добавляем недостающие стили прямо в страницу */
+        .booking-details {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 2rem auto 3rem;
+            max-width: 700px;
+            text-align: left;
+            border: 1px solid #eaeaea;
+        }
+        
+        .booking-details h3 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .booking-info {
+            margin-bottom: 2rem;
+        }
+        
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .booking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .booking-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 120px;
+        }
+        
+        .booking-value {
+            color: var(--secondary);
+            font-weight: 500;
+            text-align: right;
+            flex: 1;
+        }
+        
+        .booking-note {
+            background: #f9f5f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .thank-you .container {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Анимация для галочки */
+        .success-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: scaleIn 0.5s ease 0.3s both;
+        }
+        
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Стили для кнопки "Поделиться" */
+        .share-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 1rem;
+        }
+        
+        .share-btn:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+        }
+    </style>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
             <div class="nav-brand">
-                <!-- Добавлена ссылка на главную страницу -->
                 <a href="index.html" style="text-decoration: none; color: inherit;">
                     <div class="logo-container">
                         <div class="logo">RR</div>
@@ -22,7 +134,6 @@
                 </a>
             </div>
             
-            <!-- Гамбургер меню -->
             <button class="hamburger">
                 <span></span>
                 <span></span>
@@ -42,22 +153,48 @@
 
     <section class="page-header">
         <div class="container">
-            <h1 id="mainTitle" class="fade-in">Спасибо!</h1>
-            <p id="subTitle" class="fade-in delay-1">Ваше сообщение успешно отправлено</p>
+            <div class="fade-in">
+                <div class="success-icon">✓</div>
+                <h1 id="mainTitle">Спасибо!</h1>
+                <p id="subTitle">Ваше сообщение успешно отправлено</p>
+            </div>
         </div>
     </section>
 
     <section class="thank-you">
         <div class="container">
-            <div style="text-align: center; padding: 3rem 2rem;">
+            <div style="text-align: center; padding: 2rem 1rem; width: 100%;">
                 
                 <!-- Блок с деталями записи будет вставлен здесь -->
                 <div id="bookingDetailsContainer"></div>
                 
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;" class="fade-in delay-3">
+                <!-- Стандартное сообщение (если нет данных из формы) -->
+                <div id="defaultMessage" class="fade-in delay-2" style="max-width: 600px; margin: 0 auto 3rem;">
+                    <div class="booking-details">
+                        <h3>Ваша заявка принята!</h3>
+                        <p style="text-align: center; margin-bottom: 1.5rem; color: #555;">
+                            Благодарим вас за обращение. Мы свяжемся с вами в ближайшее время для уточнения деталей.
+                        </p>
+                        <div class="booking-note">
+                            <p style="margin-bottom: 0.8rem; font-weight: 600; color: var(--secondary);">
+                                Важная информация:
+                            </p>
+                            <p>
+                                Я свяжусь с вами в течение 24 часов для подтверждения записи. 
+                                Если у вас есть срочные вопросы, звоните: 
+                                <strong style="color: var(--primary);">+7 (980) 342-98-04</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;" class="fade-in delay-3">
                     <a href="index.html" class="btn-primary">Вернуться на главную</a>
                     <a href="booking.html" class="btn-secondary">Записаться еще</a>
                 </div>
+                
+                <!-- Контейнер для кнопки "Поделиться" -->
+                <div id="shareContainer" style="margin-top: 1.5rem;"></div>
             </div>
         </div>
     </section>
@@ -66,7 +203,6 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <!-- Логотип в футере как на главной -->
                     <a href="index.html" style="text-decoration: none; color: inherit;">
                         <div class="logo-container" style="gap: 0.8rem;">
                             <div class="logo" style="width: 40px; height: 40px; font-size: 1rem;">RR</div>
@@ -94,6 +230,9 @@
             const urlParams = new URLSearchParams(window.location.search);
             const formType = urlParams.get('form_type');
             
+            // Скрываем стандартное сообщение по умолчанию
+            const defaultMessage = document.getElementById('defaultMessage');
+            
             if (formType === 'booking') {
                 // Если это форма записи, отображаем данные
                 const service = urlParams.get('service');
@@ -104,10 +243,13 @@
                 const email = urlParams.get('email');
                 const message = urlParams.get('message');
                 
-                // Создаем блок с деталями записи
+                // Если есть данные из формы - скрываем стандартное сообщение
                 if (service || date || time || name) {
+                    defaultMessage.style.display = 'none';
+                    
+                    // Создаем блок с деталями записи
                     const bookingDetails = document.createElement('div');
-                    bookingDetails.className = 'booking-details fade-in delay-2';
+                    bookingDetails.className = 'booking-details fade-in delay-1';
                     
                     let detailsHTML = '<h3>Детали вашей записи</h3>';
                     detailsHTML += '<div class="booking-info">';
@@ -123,12 +265,17 @@
                     
                     if (date) {
                         // Форматируем дату
-                        const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
-                            weekday: 'long',
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                        });
+                        let formattedDate;
+                        try {
+                            formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('ru-RU', {
+                                weekday: 'long',
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric'
+                            });
+                        } catch(e) {
+                            formattedDate = date;
+                        }
                         detailsHTML += `
                             <div class="booking-item">
                                 <span class="booking-label">Дата:</span>
@@ -176,11 +323,11 @@
                     detailsHTML += '</div>'; // Закрываем .booking-info
                     
                     // Добавляем пожелания если есть
-                    if (message) {
+                    if (message && message.trim() !== '') {
                         detailsHTML += `
-                            <div style="text-align: left; margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.7); border-radius: 8px;">
-                                <span class="booking-label">Ваши пожелания:</span>
-                                <p style="color: var(--gray); margin-top: 0.5rem;">${message}</p>
+                            <div style="text-align: left; margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px; border-left: 3px solid var(--primary);">
+                                <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;">Ваши пожелания:</div>
+                                <p style="color: #555; margin: 0; line-height: 1.5;">${message}</p>
                             </div>
                         `;
                     }
@@ -188,17 +335,16 @@
                     // Добавляем примечание
                     detailsHTML += `
                         <div class="booking-note">
-                            <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--secondary);">
-                                 Важная информация:
+                            <p style="margin-bottom: 0.8rem; font-weight: 600; color: var(--secondary);">
+                                Важная информация:
                             </p>
-                            <p>
+                            <p style="margin-bottom: 1rem;">
                                 Я свяжусь с вами в течение 24 часов для подтверждения записи. 
                                 Если у вас есть срочные вопросы, звоните: 
-                                <strong style="color: var(--primary);">+7 (999) 123-45-67</strong>
+                                <strong style="color: var(--primary);">+7 (980) 342-98-04</strong>
                             </p>
-                            <p style="margin-top: 1rem; font-size: 0.9rem;">
-                                <em>Сохраните эту страницу или запишите номер заявки: 
-                                <strong>RR${Date.now().toString().slice(-6)}</strong></em>
+                            <p style="font-size: 0.9rem; color: #666;">
+                                <em>Номер вашей заявки: <strong>RR${Date.now().toString().slice(-8)}</strong></em>
                             </p>
                         </div>
                     `;
@@ -208,48 +354,69 @@
                     // Вставляем блок в контейнер
                     const container = document.getElementById('bookingDetailsContainer');
                     container.appendChild(bookingDetails);
-                }
-                
-                // Отправляем данные на email (симуляция)
-                setTimeout(() => {
-                    console.log('Запись отправлена на email: dasha-chernyshka@yandex.ru');
-                    console.log('Данные записи:', {
+                    
+                    // Логируем в консоль (для отладки)
+                    console.log('Данные записи получены:', {
                         service, date, time, name, phone, email, message
                     });
-                }, 1000);
+                }
+                
+                // Добавляем кнопку "Поделиться"
+                const shareContainer = document.getElementById('shareContainer');
+                const shareBtn = document.createElement('button');
+                shareBtn.className = 'share-btn fade-in delay-2';
+                shareBtn.innerHTML = `
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                    </svg>
+                    Поделиться записью
+                `;
+                
+                shareBtn.onclick = function() {
+                    const shareText = `Я записалась на макияж в Radiant Reflections! Услуга: ${service || ''}, Дата: ${date || ''}`;
+                    const shareUrl = window.location.href;
+                    
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Моя запись к визажисту',
+                            text: shareText,
+                            url: shareUrl
+                        }).catch(err => {
+                            console.log('Ошибка sharing:', err);
+                            copyToClipboard(shareUrl);
+                        });
+                    } else {
+                        copyToClipboard(shareUrl);
+                    }
+                };
+                
+                shareContainer.appendChild(shareBtn);
+                
+                // Функция копирования в буфер
+                function copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Ссылка на запись скопирована в буфер обмена!');
+                    }).catch(err => {
+                        console.error('Ошибка копирования:', err);
+                        // Fallback для старых браузеров
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        alert('Ссылка скопирована!');
+                    });
+                }
             } else {
                 // Если это обычная страница благодарности (не из формы)
-                // Оставляем стандартное сообщение
+                // Оставляем стандартное сообщение (оно уже показано по умолчанию)
             }
             
             // Очищаем историю URL чтобы при обновлении страницы не было дублирования
             if (window.history.replaceState && urlParams.toString()) {
                 const cleanURL = window.location.pathname;
                 window.history.replaceState({}, document.title, cleanURL);
-            }
-            
-            // Добавляем возможность поделиться записью
-            if (formType === 'booking') {
-                const shareBtn = document.createElement('button');
-                shareBtn.className = 'btn-secondary';
-                shareBtn.style.marginTop = '1rem';
-                shareBtn.innerHTML = 'Поделиться записью';
-                shareBtn.onclick = function() {
-                    if (navigator.share) {
-                        navigator.share({
-                            title: 'Моя запись к визажисту',
-                            text: `Я записался(ась) на макияж в Radiant Reflections!`,
-                            url: window.location.href
-                        });
-                    } else {
-                        navigator.clipboard.writeText(window.location.href).then(() => {
-                            alert('Ссылка на запись скопирована в буфер обмена!');
-                        });
-                    }
-                };
-                
-                const buttonsContainer = document.querySelector('.thank-you .container > div:last-child');
-                buttonsContainer.appendChild(shareBtn);
             }
         });
     </script>
